@@ -1,0 +1,17 @@
+import pandas as pd
+import numpy as nb
+from sklearn import linear_model
+df=pd.read_csv('car data.csv')
+# print(df)
+# print()
+# print(df.experience)
+exp_fit=df.experience.median()
+# print(exp_fit)
+df.experience=df.experience.fillna(exp_fit)
+# print(df.experience)
+reg=linear_model.LinearRegression()
+
+reg.fit(df[['speed','car_age','experience']],df.risk)
+print(reg.predict([[140,11,5]]))
+print(reg.coef_)
+print(reg.intercept_)
